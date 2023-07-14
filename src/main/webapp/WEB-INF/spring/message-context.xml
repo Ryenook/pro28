@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 스프링의 SessionLocaleResolver 클래스를 이용해 lcale 정보를 세션에 저장해서 사용한다. -->
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:locale/messages</value>
+				<!-- 패키지 local에서 message.properties를 읽어 들인다. -->
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" /> <!-- 파일의 기본 인코딩을 지정합니다. -->
+		<property name="cacheSeconds" value="60" /> 
+		<!-- properties파일이 변경되었는지 확인하는 주기를 지정한다. 60초 간격으로 지정한다. -->
+	</bean>
+</beans>
+
